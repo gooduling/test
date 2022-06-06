@@ -28,7 +28,7 @@
       gtag('js', new Date());
       gtag('config', 'G-RZ1X1G6J7F');
     </script>
-    <!-- End Global site tag (gtag.js) - Google Analytics -->\
+    <!-- End Global site tag (gtag.js) - Google Analytics -->
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -305,13 +305,37 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-099e4b62.css" rel="stylesheet" media="screen" />
+    <script>
+    <!-- Anodot Top Navbar Script -->
+      function onload(){
+        $("h1").each(function () {
+          const h1 = $(this);
+          const id = h1.attr('id')
+          $("#anodot-navbar").append(`<li onclick="ontabclick(id)" id="${id}-tab"><a href="#${id}">${h1.text()}</a></li>`)
+        })
+        const currentTab = $("#toc a.toc-h1.active").attr("href") || $("#toc a.toc-h1.active-parent").attr("href");
+        $(`${currentTab}-tab`).addClass("active")
+      }
+      function onhashchange(e){
+        setTimeout(() => {
+          const currentTab = $("#toc a.toc-h1.active").attr("href") || $("#toc a.toc-h1.active-parent").attr("href");
+          $("#anodot-navbar li").removeClass("active");
+          $(`${currentTab}-tab`).addClass("active");
+        }, 300)
+      };
+      window.addEventListener('onPushState', onhashchange)
+      function ontabclick(id){
+          $("#anodot-navbar li").removeClass("active");
+          $(`#${id}`).addClass("active");
+      };
+    </script>
+    <link href="stylesheets/screen-a5fe00b8.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-8caf7f0e.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-6e6d80fc.js"></script>
+      <script src="javascripts/all-b7cdbdc0.js"></script>
   </head>
 
-  <body class="index" data-languages="[]">
-    <div class="anodot-navbar"><ul class="top-tabs"><li><a href="#tab-1">Tab 1</a></li><li><a href="#tab-2">Tab 2</a></li><li><a href="#tab-3">Tab 3</a></li></ul></div>
+  <body onhashchange="onhashchange()" onload="onload()" class="index" data-languages="[]">
+    <ul id="anodot-navbar"></ul>
 
     <a href="#" id="nav-button">
       <span>
@@ -327,11 +351,11 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#api-reference" class="toc-h1 toc-link" data-title="API Reference">API Reference</a>
-          </li>
-          <li>
-            <a href="#tab-1" class="toc-h1 toc-link" data-title="Tab 1">Tab 1</a>
+            <a href="#forecast" class="toc-h1 toc-link" data-title="Forecast">Forecast</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-reference" class="toc-h2 toc-link" data-title="API Reference">API Reference</a>
+                  </li>
                   <li>
                     <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
                       <ul class="toc-list-h3">
@@ -429,6 +453,11 @@
                           </li>
                       </ul>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#alerts" class="toc-h1 toc-link" data-title="Alerts">Alerts</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#alert-configuration" class="toc-h2 toc-link" data-title="Alert Configuration">Alert Configuration</a>
                       <ul class="toc-list-h3">
@@ -504,6 +533,11 @@
                           </li>
                       </ul>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#anomaly" class="toc-h1 toc-link" data-title="Anomaly">Anomaly</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#anomaly" class="toc-h2 toc-link" data-title="Anomaly">Anomaly</a>
                       <ul class="toc-list-h3">
@@ -527,11 +561,6 @@
                           </li>
                       </ul>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#tab-2" class="toc-h1 toc-link" data-title="Tab 2">Tab 2</a>
-              <ul class="toc-list-h2">
                   <li>
                     <a href="#feedback" class="toc-h2 toc-link" data-title="Feedback">Feedback</a>
                       <ul class="toc-list-h3">
@@ -716,7 +745,7 @@
               </ul>
           </li>
           <li>
-            <a href="#tab-3" class="toc-h1 toc-link" data-title="Tab 3">Tab 3</a>
+            <a href="#other" class="toc-h1 toc-link" data-title="Other">Other</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#topology" class="toc-h2 toc-link" data-title="Topology">Topology</a>
@@ -806,7 +835,9 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='api-reference'>API Reference</h1>
+        <h1 id='forecast'>Forecast</h1>
+<p>Forecast description</p>
+<h2 id='api-reference'>API Reference</h2>
 <blockquote>
 <p><strong>API Base URLs</strong></p>
 
@@ -837,8 +868,6 @@ Use the Anodot APIs to access Anodot Objects.</p>
 We keep updating this site with new endpoints and APIs.<br/>
 Need help? Reach out at <code>support@anodot.com</code> and our support team will be happy to assist you.
 </aside>
-<h1 id='tab-1'>Tab 1</h1>
-<p>Tab 1 description</p>
 <h2 id='authentication'>Authentication</h2><h3 id='basic-authentication'>Basic Authentication</h3>
 <blockquote>
 <p>Using the basic token in a REST call:</p>
@@ -2871,7 +2900,9 @@ If a tag already exists then the tag will be removed from the metrics that previ
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h2 id='alert-configuration'>Alert Configuration</h2>
+</span></code></pre></div><h1 id='alerts'>Alerts</h1>
+<p>Tab 2 description</p>
+<h2 id='alert-configuration'>Alert Configuration</h2>
 <blockquote>
 <p>End Point prefix is <strong>/api/v2/alerts</strong></p>
 </blockquote>
@@ -4649,6 +4680,8 @@ Metric peak is computed based on the first breach direction that occured.</p>
 <td>example: 45.99. The highest or lowest value of the metric.</td>
 </tr>
 </tbody></table>
+<h1 id='anomaly'>Anomaly</h1>
+<p>Tab 3 description</p>
 <h2 id='anomaly'>Anomaly</h2><h3 id='the-anomaly-object'>The Anomaly Object</h3>
 <blockquote>
 <p>End Point <strong>/api/v2/anomalies</strong></p>
@@ -5403,9 +5436,7 @@ All Arguments are passed as query params, there is no body to the call.  </p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='tab-2'>Tab 2</h1>
-<p>Tab 2 description</p>
-<h2 id='feedback'>Feedback</h2>
+</span></code></pre></div><h2 id='feedback'>Feedback</h2>
 <blockquote>
 <p>End Point <strong>GET /api/v2/feedbacks</strong></p>
 </blockquote>
@@ -9523,8 +9554,8 @@ b123-af7046659d4e"</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w"> 
-</span></code></pre></div><h1 id='tab-3'>Tab 3</h1>
-<p>Tab 3 description</p>
+</span></code></pre></div><h1 id='other'>Other</h1>
+<p>Tab 4 description</p>
 <h2 id='topology'>Topology</h2>
 <p>The Topology APIs enable you to load topology data such as Customers, Geographical and Network Information, the data is then presented over Anodot map view. </p>
 
